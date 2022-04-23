@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 #include "util.h"
+#include "renderer.h"
 
 #define GLFW_INIT_ERROR   1
 #define GLFW_WINDOW_ERROR 2
@@ -40,16 +41,7 @@ int main(void)
 	glfwMakeContextCurrent(window);
 
 	// Print GL info
-	printf(
-		"GL Vendor: %s\n"
-		"GL Renderer: %s\n"
-		"GL Version: %s\n"
-		"GLSL Version: %s\n",
-		glGetString(GL_VENDOR),
-		glGetString(GL_RENDERER),
-		glGetString(GL_VERSION),
-		glGetString(GL_SHADING_LANGUAGE_VERSION)
-	);
+	printGlInfo();
 
 	// Make points for triangle
 	GLfloat points[] = {
@@ -59,17 +51,10 @@ int main(void)
 	};
 
 	// Make and bind vertex buffer object
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * 6, points, GL_STATIC_DRAW);
+	vboinit(sizeof(GLfloat) * 6, points);
 
 	// Make and bind vertex array object
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+	vaoinit(0, 2, 0);
 
 	// Read in and compile shader programs
 
