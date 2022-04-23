@@ -2,7 +2,7 @@
 
 // Spawn a window with a triangle in it
 
-#include <GL/glew.h>
+#include <epoxy/gl.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
@@ -10,8 +10,7 @@
 
 #define GLFW_INIT_ERROR   1
 #define GLFW_WINDOW_ERROR 2
-#define GLEW_INIT_ERROR   3
-#define FILE_READ_ERROR   4
+#define FILE_READ_ERROR   3
 
 int main(void)
 {
@@ -39,13 +38,6 @@ int main(void)
 
 	// Make the window the current context
 	glfwMakeContextCurrent(window);
-
-	// Initialize GLEW
-	if (glewInit() != GLEW_OK) {
-		fputs("Failed to initialize GLEW\n", stderr);
-		glfwTerminate();
-		return GLEW_INIT_ERROR;
-	}
 
 	// Print GL info
 	printf(

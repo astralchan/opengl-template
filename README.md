@@ -1,9 +1,9 @@
 # About
 A basic reference for when I forget how to set up a rendering context in C with
-GLFW and GLEW.
+GLFW and libepoxy.
 # Building
 ## Dependencies
-* glew-devel
+* libepoxy-devel
 * glfw-devel
 * openGL drivers - mesa, nouveau, etc
 * pkg-config

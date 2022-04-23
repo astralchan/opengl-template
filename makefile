@@ -5,7 +5,7 @@
 # Build variables
 CC       = gcc
 CFLAGS   = -std=c99 -O1 -g
-LDFLAGS != pkg-config --libs glew glfw3
+LDFLAGS != pkg-config --libs epoxy glfw3
 
 # Build targets
 all: prog
