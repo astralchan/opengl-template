@@ -55,49 +55,6 @@ char *readfile(const char filename[])
 	return content;
 }
 
-// Make a shader from a source file
-GLuint makeshader(const GLenum type, const char shaderpath[])
-{
-	// Read shader source in
-	const GLchar *src = (const GLchar *)readfile(shaderpath);
-	if (!src) return 0;
-
-	// Make shader
-	GLuint shader = glCreateShader(type);
-
-	// Build shader
-	glShaderSource(shader, 1, &src, NULL);
-	glCompileShader(shader);
-
-	// Check the build
-	GLint result;
-	glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
-	if (result == GL_FALSE) {
-		GLint length;
-		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-
-		// Make char array for log msg
-		GLchar *msg = malloc(sizeof(GLchar) * length);
-		if (!msg) {
-			perror("ERROR");
-			fputs("Failed to allocate memory for log\n", stderr);
-			glDeleteShader(shader);
-			return 0;
-		}
-
-		// Read log into msg
-		glGetShaderInfoLog(shader, length, &length, msg);
-
-		// Print error and exit
-		fprintf(stderr, "Failed to compile shader: %s\n%s", shaderpath, msg);
-		free(msg);
-		glDeleteShader(shader);
-		return 0;
-	}
-
-	return shader;
-}
-
 void printGlfwVersion(void)
 {
 	int major, minor, revision;

@@ -13,7 +13,7 @@ prog: main.o util.o renderer.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ main.o util.o renderer.o
 main.o: main.c util.h renderer.h
 util.o: util.c util.h
-renderer.o: renderer.c renderer.h
+renderer.o: renderer.c renderer.h util.h
 clean:
 	@rm -f prog main.o util.o renderer.o
 

@@ -5,4 +5,5 @@
 void vboinit(GLsizeiptr, const GLvoid *);
 void vaoinit(GLuint, GLint, GLsizei);
 void printGlInfo(void);
+GLuint makeshader(const GLenum, const char[]);
 #endif

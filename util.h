@@ -3,6 +3,5 @@
 #ifndef UTIL_H
 #define UTIL_H
 char *readfile(const char[]);
-GLuint makeshader(const GLenum, const char[]);
 void printGlfwVersion(void);
 #endif

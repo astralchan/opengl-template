@@ -2,8 +2,10 @@
 
 #include <epoxy/gl.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "renderer.h"
+#include "util.h"
 
 // Initialize a vertex buffer object
 void vboinit(GLsizeiptr size, const GLvoid *data)
@@ -37,4 +39,47 @@ void printGlInfo(void)
 		glGetString(GL_VERSION),
 		glGetString(GL_SHADING_LANGUAGE_VERSION)
 	);
+}
+
+// Make a shader from a source file
+GLuint makeshader(const GLenum type, const char shaderpath[])
+{
+	// Read shader source in
+	const GLchar *src = (const GLchar *)readfile(shaderpath);
+	if (!src) return 0;
+
+	// Make shader
+	GLuint shader = glCreateShader(type);
+
+	// Build shader
+	glShaderSource(shader, 1, &src, NULL);
+	glCompileShader(shader);
+
+	// Check the build
+	GLint result;
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
+	if (result == GL_FALSE) {
+		GLint length;
+		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+		// Make char array for log msg
+		GLchar *msg = malloc(sizeof(GLchar) * length);
+		if (!msg) {
+			perror("ERROR");
+			fputs("Failed to allocate memory for log\n", stderr);
+			glDeleteShader(shader);
+			return 0;
+		}
+
+		// Read log into msg
+		glGetShaderInfoLog(shader, length, &length, msg);
+
+		// Print error and exit
+		fprintf(stderr, "Failed to compile shader: %s\n%s", shaderpath, msg);
+		free(msg);
+		glDeleteShader(shader);
+		return 0;
+	}
+
+	return shader;
 }
