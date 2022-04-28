@@ -27,7 +27,7 @@ void vaoinit(GLuint index, GLint size, GLsizei stride)
 }
 
 // Print GL information
-void printGlInfo(void)
+void print_gl_info(void)
 {
 	printf(
 		"GL Vendor: %s\n"
@@ -42,10 +42,10 @@ void printGlInfo(void)
 }
 
 // Make a shader from a source file
-GLuint makeshader(const GLenum type, const char shaderpath[])
+GLuint makeshader(const GLenum type, const char path[])
 {
 	// Read shader source in
-	const GLchar *src = (const GLchar *)readfile(shaderpath);
+	const GLchar *src = (const GLchar *)readfile(path);
 	if (!src) return 0;
 
 	// Make shader
@@ -62,6 +62,10 @@ GLuint makeshader(const GLenum type, const char shaderpath[])
 		GLint length;
 		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
 
+		// Print that error occured
+		fprintf(stderr, "Failed to compile shader: %s\n", path);
+		glDeleteShader(shader);
+
 		// Make char array for log msg
 		GLchar *msg = malloc(sizeof(GLchar) * length);
 		if (!msg) {
@@ -73,11 +77,9 @@ GLuint makeshader(const GLenum type, const char shaderpath[])
 
 		// Read log into msg
 		glGetShaderInfoLog(shader, length, &length, msg);
-
-		// Print error and exit
-		fprintf(stderr, "Failed to compile shader: %s\n%s", shaderpath, msg);
+		fprintf(stderr, "%s", msg);
 		free(msg);
-		glDeleteShader(shader);
+
 		return 0;
 	}
 

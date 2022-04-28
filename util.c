@@ -8,20 +8,20 @@
 #include "util.h"
 
 // Read file into char pointer
-char *readfile(const char filename[])
+char *readfile(const char file[])
 {
 	// Open the file
-	FILE *fp = fopen(filename, "r");
+	FILE *fp = fopen(file, "r");
 	if (!fp) {
 		perror("ERROR");
-		fprintf(stderr, "Failed to open file: %s\n", filename);
+		fprintf(stderr, "Failed to open file: %s\n", file);
 		return NULL;
 	}
 
 	// Get file size
 	if (fseek(fp, 0L, SEEK_END) == -1) {
 		perror("ERROR");
-		fprintf(stderr, "Failed to seek end of file: %s\n", filename);
+		fprintf(stderr, "Failed to seek end of file: %s\n", file);
 		fclose(fp);
 		return NULL;
 	}
@@ -32,7 +32,7 @@ char *readfile(const char filename[])
 	char *content = malloc(filesize + 1);
 	if (!content) {
 		perror("ERROR");
-		fprintf(stderr, "Failed to allocate memory for file: %s\n", filename);
+		fprintf(stderr, "Failed to allocate memory for file: %s\n", file);
 		fclose(fp);
 		return NULL;
 	}
@@ -40,7 +40,7 @@ char *readfile(const char filename[])
 	// Read file into char pointer
 	if (!fread(content, 1, filesize, fp)) {
 		perror("ERROR");
-		fprintf(stderr, "Failed to read file: %s\n", filename);
+		fprintf(stderr, "Failed to read file: %s\n", file);
 		fclose(fp);
 		free(content);
 		return NULL;
@@ -55,7 +55,7 @@ char *readfile(const char filename[])
 	return content;
 }
 
-void printGlfwVersion(void)
+void print_glfw_version(void)
 {
 	int major, minor, revision;
 	glfwGetVersion(&major, &minor, &revision);

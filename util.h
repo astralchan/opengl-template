@@ -3,5 +3,5 @@
 #ifndef UTIL_H
 #define UTIL_H
 char *readfile(const char[]);
-void printGlfwVersion(void);
+void print_glfw_version(void);
 #endif

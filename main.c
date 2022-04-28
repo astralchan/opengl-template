@@ -16,7 +16,7 @@
 int main(void)
 {
 	// Print GLFW running version
-	printGlfwVersion();
+	print_glfw_version();
 
 	// Initialize GLFW
 	if (glfwInit() != GLFW_TRUE) {
@@ -41,7 +41,7 @@ int main(void)
 	glfwMakeContextCurrent(window);
 
 	// Print GL info
-	printGlInfo();
+	print_gl_info();
 
 	// Make points for triangle
 	GLfloat points[] = {

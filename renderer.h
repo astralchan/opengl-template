@@ -4,6 +4,6 @@
 #define RENDERER_H
 void vboinit(GLsizeiptr, const GLvoid *);
 void vaoinit(GLuint, GLint, GLsizei);
-void printGlInfo(void);
+void print_gl_info(void);
 GLuint makeshader(const GLenum, const char[]);
 #endif
