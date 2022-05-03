@@ -64,7 +64,6 @@ GLuint makeshader(const GLenum type, const char path[])
 
 		// Print that error occured
 		fprintf(stderr, "Failed to compile shader: %s\n", path);
-		glDeleteShader(shader);
 
 		// Make char array for log msg
 		GLchar *msg = malloc(sizeof(GLchar) * length);
@@ -80,6 +79,7 @@ GLuint makeshader(const GLenum type, const char path[])
 		fprintf(stderr, "%s", msg);
 		free(msg);
 
+		glDeleteShader(shader);
 		return 0;
 	}
 
