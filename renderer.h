@@ -2,6 +2,7 @@
 
 #ifndef RENDERER_H
 #define RENDERER_H
+// Prototypes
 void vboinit(GLsizeiptr, const GLvoid *);
 void vaoinit(GLuint, GLint, GLsizei);
 void print_gl_info(void);

@@ -11,7 +11,6 @@
 
 #define GLFW_INIT_ERROR   1
 #define GLFW_WINDOW_ERROR 2
-#define FILE_READ_ERROR   3
 
 int main(void)
 {
