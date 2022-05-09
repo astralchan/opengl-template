@@ -76,7 +76,7 @@ GLuint makeshader(const GLenum type, const char path[])
 
 		// Read log into msg
 		glGetShaderInfoLog(shader, length, &length, msg);
-		fprintf(stderr, "%s", msg);
+		fputs(msg, stderr);
 		free(msg);
 
 		glDeleteShader(shader);
