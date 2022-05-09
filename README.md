@@ -9,6 +9,7 @@ GLFW and libepoxy.
 * pkg-config
 * C compiler (e.g. gcc)
 * make
+
 ## Build
 To build, just run
 ```
