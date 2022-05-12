@@ -32,8 +32,6 @@ for arg; do
 	esac
 done
 
-rm -f config.mk
-
 cat << _EOF
 Configuring...
 
@@ -47,7 +45,7 @@ DESTDIR = $DESTDIR
 PREFIX  = $PREFIX
 _EOF
 
-cat << _EOF >> config.mk
+cat << _EOF > config.mk
 # build variables
 CC      = $CC
 CFLAGS  = $CFLAGS
