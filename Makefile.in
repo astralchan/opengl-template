@@ -2,12 +2,9 @@
 
 .POSIX:
 
-# Build variables
-CC       = gcc
-CFLAGS   = -std=c99 -O1 -g
-LDFLAGS != pkg-config --libs epoxy glfw3
+include config.mk
 
-# Build targets
+# build rules
 all: prog
 prog: main.c util.o renderer.o
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ main.c util.o renderer.o
@@ -16,6 +13,15 @@ renderer.o: renderer.c renderer.h util.h
 clean:
 	@rm -f prog util.o renderer.o
 
+# install rules
+install:
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp prog $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/prog
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/prog
+
+# suffix rules
 .SUFFIXES: .c .o
 .c.o:
 	$(CC) $(CFLAGS) -c $<
