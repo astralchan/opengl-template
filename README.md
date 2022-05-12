@@ -13,7 +13,7 @@ GLFW and libepoxy.
 ## Build
 To build:
 ```
-./configure.sh
+./configure
 make
 ```
 Then, to run the program:
