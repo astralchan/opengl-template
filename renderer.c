@@ -66,7 +66,7 @@ GLuint makeshader(const GLenum type, const char path[])
 		fprintf(stderr, "Failed to compile shader: %s\n", path);
 
 		// Make char array for log msg
-		GLchar *msg = malloc(sizeof(GLchar) * length);
+		GLchar *msg = (GLchar *)malloc(sizeof(GLchar) * length);
 		if (!msg) {
 			perror("ERROR");
 			fputs("Failed to allocate memory for log\n", stderr);

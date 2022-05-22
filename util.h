@@ -2,10 +2,25 @@
 
 #ifndef UTIL_H
 #define UTIL_H
-// Prototypes
-char *readfile(const char[]);
-void print_glfw_version(void);
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 // Defines
+
+// Error code for fileread
 #define FILE_READ_ERROR 3
+
+// Prototypes
+
+// Read a file
+char *readfile(const char[]);
+// Print GLFW running version
+void print_glfw_version(void);
+
+#ifdef __cplusplus
+}
 #endif
+
+#endif // UTIL_H

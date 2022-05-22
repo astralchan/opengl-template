@@ -29,7 +29,7 @@ char *readfile(const char file[])
 	rewind(fp);
 
 	// Allocate memory for the file content
-	char *content = malloc(filesize + 1);
+	char *content = (char *)malloc(filesize + 1);
 	if (!content) {
 		perror("ERROR");
 		fprintf(stderr, "Failed to allocate memory for file: %s\n", file);
