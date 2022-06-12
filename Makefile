@@ -4,9 +4,9 @@
 .SUFFIXES:
 
 # build vars
-CC       = cc
-CFLAGS   = -std=c99 -O1
-LDFLAGS != pkg-config --libs epoxy glfw3
+CC      = cc
+CFLAGS  = -std=c99 -O1
+LDFLAGS = `pkg-config --libs epoxy glfw3`
 
 # build rules
 all: triangle
