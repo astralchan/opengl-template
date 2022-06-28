@@ -58,10 +58,10 @@ int main(void)
 	// Read in and compile shader programs
 
 	GLuint fragmentShader = makeshader(GL_FRAGMENT_SHADER,
-		"shaders/fragment.glsl");
+			"shaders/diffuse.frag");
 	if (!fragmentShader) return FILE_READ_ERROR;
 
-	GLuint vertexShader = makeshader(GL_VERTEX_SHADER, "shaders/vertex.glsl");
+	GLuint vertexShader = makeshader(GL_VERTEX_SHADER, "shaders/point.vert");
 	if (!vertexShader) return FILE_READ_ERROR;
 
 	// Make and link shader program
