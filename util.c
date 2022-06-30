@@ -19,7 +19,7 @@ char *readfile(const char file[])
 	}
 
 	// Get file size
-	if (fseek(fp, 0L, SEEK_END) == -1) {
+	if (fseek(fp, 0L, SEEK_END)) {
 		perror("ERROR");
 		fprintf(stderr, "Failed to seek end of file: %s\n", file);
 		fclose(fp);

@@ -5,6 +5,7 @@
 #include <epoxy/gl.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "util.h"
 #include "renderer.h"
@@ -75,12 +76,21 @@ int main(void)
 
 	// Keep window open while not closed
 	while (!glfwWindowShouldClose(window)) {
+		// Handle events
+
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+			glfwSetWindowShouldClose(window, true);
+
 		// Clear buffer
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		// Render here
+
 		// Clear color
 		glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
 		// Draw a triangle
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+
 		// Swap front and back buffers
 		glfwSwapBuffers(window);
 		// Listen for window events
