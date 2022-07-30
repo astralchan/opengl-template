@@ -1,11 +1,8 @@
 # vim: ts=4 sw=4 noet cc=80
 
 .POSIX:
-.SUFFIXES:
 
 # build vars
-CC      = cc
-CFLAGS  = -std=c99 -O1
 LDFLAGS = `pkg-config --libs epoxy glfw3`
 
 # build rules
@@ -25,8 +22,3 @@ install:
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/triangle
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/triangle
-
-# suffix rules
-.SUFFIXES: .c .o
-.c.o:
-	$(CC) $(CFLAGS) -c $<
